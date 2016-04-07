@@ -53,8 +53,9 @@ function goAdventuring(adv)
 }
 
 function display(){
+    jHeroDiv = "";
     for (var k = 0; k < superheroes.length; k++){
-           
+          jHeroDiv.innerHTML += "<h2><span class = ''"
     }
 	{
 		for (var i = 0; i < heroNameOut.length; i++)
