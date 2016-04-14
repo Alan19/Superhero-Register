@@ -1,0 +1,26 @@
+body
+{
+	font:18pt bangers;
+	text-align:center;
+}
+
+span.column
+{
+	width:55%;
+	text-align:left;
+}
+
+
+#hero-list
+{
+	font-size:20pt;
+	text-align:left;
+}
+.new-hero-inputs{
+	margin-top:5px;
+}
+
+.heroname{
+	width:40%;
+	text-align:right;
+}

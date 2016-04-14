@@ -3,26 +3,9 @@
 <html>
 	<head>
 		<title>Superhero</title>
-		<!--<link type = "text/css" rel = "stylesheet" href = "templatecss.css" />-->
-		<style>
-			body
-			{
-				font: 24pt comic sans ms;
-				text-align:center;
-			}
-			
-			span.column
-			{
-				width:55%;
-				text-align:left;
-			}
-			
-			span.column+span.column
-			{
-				width:40%;
-				text-align:right;
-			}
-		</style>
+		<link type = "text/css" rel = "stylesheet" href = "templatecss.css" />
+		<link href='https://fonts.googleapis.com/css?family=Patua+One|Bangers|Roboto|Carter+One' rel='stylesheet' type='text/css'>
+		<style></style>
 		<script type = "text/javascript" src = "utilities.js"></script>
 		<script>
 			function Superhero(n, c, r)
@@ -58,6 +41,7 @@
 				jHeroDiv = document.getElementById("heroes-div");
 				jButtonDiv = document.getElementById("button-div");
 				jHeroList = document.getElementById("hero-list");
+				jSelected = document.getElementById("selected");
 				
 				hero = new Superhero("The Shift", "New York City", 0);
 				superheroes.push(new Superhero("The Shift", "New York City", 0));
@@ -130,24 +114,30 @@
 			function display2(){
 				jHeroList.innerHTML = "";
 				for(i = 0; i < superheroes.length; i++){
-					console.log(superheroes[i].superheroName);
-					jHeroList.innerHTML += "Name:" + superheroes[i].superheroName + "<br /> City:" + superheroes[i].superheroCity + "<br /> Reputation:" + superheroes[i].superheroReputation + "<br /> Adventures: <br />";
+					//console.log(superheroes[i].superheroName);
+					jHeroList.innerHTML += "Name: " + superheroes[i].superheroName + "<br /> City: " + superheroes[i].superheroCity + "<br /> Reputation: " + superheroes[i].superheroReputation + "<br /> Adventures: <br />";
 					
 					for (var a in superheroes[i].adventures)
 						jHeroList.innerHTML += superheroes[i].adventures[a] + "<br />";
-					jHeroList.innerHTML += "<hr />";
+					//jHeroList.innerHTML += "<hr />";
 				}
+				jSelected.innerHTML = "Hero Selected: " + superheroes[selectedHero].superheroName;
 			}
 		</script>
 	</head>
 		
 	<body onload = "initialize();">
 		<!--<label><input id = "selector-input" type = "number" onchange = "selector(this.value);" /></label>-->
+		<div id = "selected"></div>
 		<div id = "button-div"></div>
-		<br />
+		<div class = "new-hero-inputs">
+			<label>New Hero Name: <input type = "text" id = "newheroname" /></label>
+			<label>New Hero City: <input type = "text" id = "newherocity" /></label>
+			<button onclick = "addHeroes2(newheroname.value,newherocity.value); display2();">Create New Hero</button>
+		</div><hr />
 		<div id = "hero-list"></div>
 		<div id = "heroes-div">
-			<h2><span class = "heroname"></span></h2>
+			<span class = "heroname"></span>
 			<!--<div class = "maincontainer">
 				<span class = "column">
 					Hailing from <span id = "herocity"></span>, <span class = "heroname"></span> has been on many heroic adventures including:
@@ -158,17 +148,11 @@
 			</div>-->
 			<span class = "column">
 				<label>Change Your Name: <input type = "text" onchange = "changeName(this.value); this.value = '';"/></label>
-				<hr />
 				<label>Move to a New City: <input type = "text" onchange = "changeCity(this.value); this.value = '';" /></label>
-				<hr />
 				<label>Describe Your Latest Adventure: <input type = "text" onchange = "goAdventuring(this.value); this.value = '';"/></label>
 				<hr />
 			</span>
-			<span class = "new-hero-inputs">
-				<label>New Hero Name: <input type = "text" id = "newheroname" /></label>
-				<label>New Hero City: <input type = "text" id = "newherocity" /></label>
-				<button onclick = "addHeroes2(newheroname.value,newherocity.value); display2();">Create New Hero</button>
-			</span>
+			
 		</div>
 		
 	</body>
