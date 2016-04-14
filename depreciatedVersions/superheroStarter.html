@@ -1,0 +1,133 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Superhero</title>
+		<link type = "text/css" rel = "stylesheet" href = "templatecss.css" />
+		<style>
+			body
+			{
+				font: 24pt comic sans ms;
+				text-align:center;
+			}
+			
+			span.column
+			{
+				width:55%;
+				text-align:left;
+			}
+			
+			span.column+span.column
+			{
+				width:40%;
+				text-align:right;
+			}
+		</style>
+		<script type = "text/javascript" src = "utilities.js"></script>
+		<script>
+			function Superhero(n, c, r)
+			{
+				/*this = {
+					superheroName = n,
+					superheroCity = c,
+					superheroReputation = r
+				};*/
+				
+				this.superheroName = n;
+				this.superheroCity = c;
+				this.superheroReputation = r;
+				
+				
+				this.adventures = [];
+				
+				this.haveAdventure = function(adv, prestige)
+				{
+					this.adventures.push(adv);
+					this.superheroReputation += prestige;
+				}
+			}
+			
+			function initialize()
+			{
+				heroNameOut = document.getElementsByClassName("heroname");
+				heroCityOut = document.getElementById("herocity");
+				adventureListOut = document.getElementById("adventurelist");
+				jReputation = document.getElementById("reputation");
+				superheroes = [Superhero("The Shift", "New York City", 0)];
+				
+				hero = new Superhero("The Shift", "New York City", 0);
+				
+				display();
+			}
+			
+			function changeName(newName)
+			{
+				superhero[selectedHero].superheroName = newName;
+				display();
+			}
+			
+			function changeCity(newCity)
+			{
+				hero.superheroCity = newCity;
+				display();
+			}
+			
+			function goAdventuring(adv)
+			{
+				hero.haveAdventure(adv, getRandomInteger(1,10));
+				display();
+			}
+			
+			function display()
+			{	for (var k = 0; k < superheroes.length; k++)
+				{
+					for (var i = 0; i < heroNameOut.length; i++)
+						heroNameOut[i].innerHTML = hero.superheroName;
+					
+					heroCityOut.innerHTML = hero.superheroCity;
+					jReputation.innerHTML = hero.superheroReputation;
+					
+					adventureListOut.innerHTML = "";
+					for (var a in hero.adventures)
+						adventureListOut.innerHTML += hero.adventures[a] + "<br />";
+				}
+			}
+			function addHeroes()
+			{
+				superheroes.push(Superhero("The Shift", "New York City", 0));
+			}
+			
+			function selector(x)
+			{
+				if (x < superheroes.length){
+					selectedHero = x-1;
+				}
+			}
+		</script>
+	</head>
+		
+	<body onload = "initialize();">
+		<label><input id = "selector-input" type = "number" onchange = "selector(this.value);" /></label>
+		<br />
+		<button onclick = "addHeroes()" >New Hero</button>
+		<h2><span class = "heroname"></span></h2>
+		<h3>Reputation: <span id = "reputation"></span></h3>
+		<div class = "maincontainer">
+			<span class = "column">
+				Hailing from <span id = "herocity"></span>, <span class = "heroname"></span> has been on many heroic adventures including:
+				<div id = "adventurelist"></div>
+				<hr />
+				
+			</span>
+			
+			<span class = "column">
+				<label>Change Your Name: <input type = "text" onchange = "changeName(this.value); this.value = '';"/></label>
+				<hr />
+				<label>Move to a New City: <input type = "text" onchange = "changeCity(this.value); this.value = '';" /></label>
+				<hr />
+				<label>Describe Your Latest Adventure: <input type = "text" onchange = "goAdventuring(this.value); this.value = '';"/></label>
+				<hr />
+				<button>Update</button>
+			</span>
+		</div>
+	</body>
+</html>

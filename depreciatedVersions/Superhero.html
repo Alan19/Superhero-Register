@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<!-- Zhen Xiao -->
+<html>
+	<head>
+		<title>Superhero?</title>
+		<style>
+			div{
+				text-align:center;
+				margin-top:20px;
+				font:16pt georgia;
+			}
+		</style>
+		<script>
+			function initialize(){
+				jName = document.getElementsByClassName("name-div");
+				jCity = document.getElementById("city-div");
+				jReputation = document.getElementById("reputation-div");
+				jNameInput = document.getElementById("name-input");
+				jCityInput = document.getElementById("city-input");
+				jReputationInput = document.getElementById("reputation-input");
+				registerHero("You", "This City", "Whatever you Want it to Be");
+			}
+			function registerHero(name, city, reputation){
+				hero = new Superhero(name, city, reputation);
+				display();
+			}
+			function Superhero(name, city, reputation, adventures){
+				this.hName = name;
+				this.hCity = city;
+				this.hReputation = reputation;
+			}
+			function display(){
+				for(i = 0; i < jName.length; i++)
+					jName[i].innerHTML = hero.hName;
+				
+				jCity.innerHTML = hero.hCity;
+				jReputation.innerHTML = hero.hReputation;
+			}
+			function submitInformation(){
+				heroName = jNameInput.value;
+				heroCity = jCityInput.value;
+				heroReputation = jReputationInput.value;
+				registerHero(heroName, heroCity, heroReputation);
+			}
+		</script>
+	</head>
+	<body onload = "initialize();">
+		<div>Name:<span class = "name-div"></span></div>
+		<div>City:<span id = "city-div"></span></div>
+		<div>Reputation:<span id = "reputation-div"></span></div><br />
+		<label>Name? <input id = "name-input" type = "text" /></label>
+		<label>City? <input id = "city-input" type = "text" /></label>
+		<label>Reputation? <input id = "reputation-input" type = "text" /></label>
+		<button onclick = "submitInformation();">Click here to submit your hero's information!</button>
+	</body>
+</html>
